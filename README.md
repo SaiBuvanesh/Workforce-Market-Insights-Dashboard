@@ -36,4 +36,4 @@ Detailed technical information is available in the following guides:
 - **Education ROI**: Correlating degree levels with market attractiveness scores.
 
 ---
-*Created by [Sai Buvanesh](https://github.com/saibuvanesh)*
+[Sai Buvanesh](https://github.com/saibuvanesh)*
