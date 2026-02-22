@@ -1,64 +1,55 @@
-# Deep Data Analysis: Workforce Market Insights
+# Data Analysis: Workforce Market Insights
 
-This document provides a comprehensive technical breakdown of the data infrastructure powering the Workforce Market Insights Dashboard.
+This document details the data structure and engineered features used in the Workforce Market Insights Dashboard.
 
-## 🏗️ Data Architecture Logic
+## Data Infrastructure
 
-The project's strength lies in its **Engineered Feature Layer**. Instead of relying solely on raw job postings, we've developed a suite of economic indicators that provide context to the numbers.
+The analysis is built on a combination of raw job postings and engineered features designed to provide economic context.
 
 ```mermaid
 graph TD
-    A[Raw Job Postings] --> B{Feature Engineering}
+    A[Raw Job Postings] --> B[Feature Engineering]
     B --> C[Demand Index]
     B --> D[Market Pressure]
     B --> E[Cost Adjusted Salary]
-    C --> F[Strategic Dashboard]
+    C --> F[Dashboard]
     D --> F
     E --> F
-    G[Scraped Global Data] --> H[Global Benchmark]
+    G[Global Scraped Data] --> H[Global Benchmark]
     H --> F
 ```
 
-## 📊 Feature Intelligence (Indian Market)
+## Key Features (Indian Market)
 
-We analyzed **30,000+ records** with 53 distinct attributes. Below is the technical breakdown of the most impactful engineered metrics found in the dataset:
+The primary dataset (`1-Job_Market_India_PowerBI_Final.csv`) contains 30,000 records across 53 columns. Key engineered features include:
 
-| Metric | Business Logic | Feature Column |
+| Metric | Description | Column Name |
 | :--- | :--- | :--- |
-| **Market Pressure** | Measures the intensity of competition for a role. | `job_market_pressure` |
-| **Salary Adjusted Index** | Normalizes pay relative to city-level costs. | `city_salary_adjusted_index` |
-| **Opportunity Score** | Identifies strategic high-potential roles. | `opportunity_score` |
-| **Skill Scarcity** | Quantifies the gap for specific niche skills. | `skill_scarcity` |
-| **Hiring Stability** | Measures the consistency of employment trends. | `hiring_stability` |
+| **Market Pressure** | Competition intensity for a specific role. | `job_market_pressure` |
+| **Adjusted Salary** | Salary normalized relative to city cost-of-living. | `city_salary_adjusted_index` |
+| **Opportunity Score** | Calculated score identifying high-potential areas. | `opportunity_score` |
+| **Skill Scarcity** | Gap between skill demand and supply. | `skill_scarcity` |
+| **Hiring Stability** | Consistency of hiring trends over time. | `hiring_stability` |
 
-### Value Distributions (In-Dataset)
+### Market Segments
 
-| Job Domain | Volume Context | Market Demand Level |
+| Job Domain | Volume | Market Demand |
 | :--- | :--- | :--- |
-| **Data / Tech** | High Growth | High Demand Intensity |
-| **Marketing** | Bulk Volume | Stable Demand |
-| **Healthcare** | High Stability | Essential Demand |
-| **Engineering** | Specialized Mid-Range | Specialized Demand |
+| **Data / Tech** | High Growth | High Intensity |
+| **Marketing** | Bulk Volume | Stable |
+| **Healthcare** | High Stability | Essential |
+| **Engineering** | Specialized | Specialized |
 
----
+## Global Data Context
 
-## 🌍 Global Data Science Context
+The `postings.csv` dataset provides a global benchmark with 162,000+ records, primarily focused on North American and European markets.
 
-The `postings.csv` dataset contains **162,000+ global records**, providing a baseline to compare the Indian market against international standards.
+- **Focus**: Data Analytics and Engineering roles.
+- **Technology**: Analysis of requirements for Python, SQL, and cloud platforms.
 
-- **Primary Focus**: Data Analytics, Machine Learning, and Data Engineering roles.
-- **Geography**: Dominance of North American and Western European hubs.
-- **Tech Requirements**: Focuses heavily on Python, ML frameworks, and cloud-native data stacks.
+## Data Preprocessing Workflow
 
----
-
-## 🛠️ Data Preprocessing Workflow
-
-1. **Cleaning**: Handled missing salary ranges and standardized city/state names for consistent map visualization.
-2. **Feature Mapping**: Categorized specific titles into broader `job_domain` groups for executive-level filtering.
-3. **Temporal Mapping**: Derived `season` and `quarter` from timestamp data to identify hiring cyclicality.
-4. **Encoding**: Included `*_encoded` columns for every major category, paving the way for downstream machine learning and predictive modeling.
-
----
-> [!TIP]
-> This data structure is optimized for both **Exploratory Data Analysis (EDA)** and **Machine Learning** pipelines.
+1. **Cleaning**: Standardized city names and handled missing values in salary ranges.
+2. **Feature Mapping**: Categorized specific job titles into broader domains for aggregate analysis.
+3. **Encoding**: Included numerical encoding for categorical variables to support potential machine learning applications.
+4. **Temporal Analysis**: Derived seasons and quarters to account for hiring cyclicality.
